@@ -1,0 +1,6 @@
+{
+  "name": "Harsh Yadav - Insurance Advisory",
+  "description": "Professional insurance advisory platform for Harsh Yadav, providing ICICI Prudential life insurance solutions, customized quotes, and expert insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

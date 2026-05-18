@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "quote": {
+      "title": "Quote Request",
+      "description": "Details for a customized insurance quote request.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "description": "Full name of the client" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "age": { "type": "number" },
+        "insuranceType": { "type": "string", "enum": ["term", "endowment", "ulip", "retirement", "child"] },
+        "coverageAmount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "phone", "age", "insuranceType", "createdAt"]
+    },
+    "message": {
+      "title": "Contact Message",
+      "description": "Messages sent from the contact form.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "content", "createdAt"]
+    },
+    "blogPost": {
+      "title": "Blog Post",
+      "description": "Insights and articles shared by the advisor.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "excerpt", "createdAt"]
+    },
+    "policy": {
+      "title": "Client Policy",
+      "description": "Active policy details for a client.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string", "description": "The UID of the owner" },
+        "policyNumber": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "lapsed", "pending"] },
+        "premiumAmount": { "type": "number" },
+        "nextDueDate": { "type": "string", "format": "date-time" },
+        "sumAssured": { "type": "number" }
+      },
+      "required": ["userId", "policyNumber", "type", "status"]
+    },
+    "claim": {
+      "title": "Claim Tracking",
+      "description": "Status of a filed claim.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "policyNumber": { "type": "string" },
+        "status": { "type": "string", "enum": ["submitted", "processing", "approved", "rejected"] },
+        "amount": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "policyNumber", "status"]
+    }
+  },
+  "firestore": {
+    "/quotes/{quoteId}": {
+      "schema": "quote",
+      "description": "User requested insurance quotes"
+    },
+    "/messages/{messageId}": {
+      "schema": "message",
+      "description": "Incoming contact form messages"
+    },
+    "/blogPosts/{postId}": {
+      "schema": "blogPost",
+      "description": "Advisor blog articles"
+    },
+    "/policies/{policyId}": {
+      "schema": "policy",
+      "description": "User specific insurance policies"
+    },
+    "/claims/{claimId}": {
+      "schema": "claim",
+      "description": "User filed claims"
+    }
+  }
+}
